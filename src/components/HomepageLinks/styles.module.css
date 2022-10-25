@@ -44,3 +44,9 @@
   padding-left: 1rem;
   padding-top: 1rem;
 }
+
+.cardFormat {
+  margin: 1rem;
+  box-shadow: 2px 2px 5px #dcdcdc;
+  border-radius: 10px;
+}

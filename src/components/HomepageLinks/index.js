@@ -45,22 +45,24 @@ const LinksList = [
 function Links({ title, description, call, destination, icon }) {
   return (
     <div className={clsx("col col--4")}>
-      <div class="card-demo">
-        <div class="card item shadow--lw">
-          <div class={styles.iconFormat}>{icon}</div>
-          <div class="card__header">
-            <h3 class={styles.titleFormat}>{title}</h3>
-          </div>
-          <div class="card__body">
-            <p class={styles.textFormat}>{description}</p>
-          </div>
-          <div class="card__footer">
-            <Link
-              class="button button--secondary button--block"
-              to={destination}
-            >
-              {call}
-            </Link>
+      <div className={styles.cardFormat}>
+        <div class="card-demo">
+          <div class="card item shadow--lw">
+            <div class={styles.iconFormat}>{icon}</div>
+            <div class="card__header">
+              <h3 class={styles.titleFormat}>{title}</h3>
+            </div>
+            <div class="card__body">
+              <p class={styles.textFormat}>{description}</p>
+            </div>
+            <div class="card__footer">
+              <Link
+                class="button button--secondary button--block"
+                to={destination}
+              >
+                {call}
+              </Link>
+            </div>
           </div>
         </div>
       </div>

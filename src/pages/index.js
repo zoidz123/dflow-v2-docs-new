@@ -17,14 +17,6 @@ function HomepageHeader() {
         <p className="hero__subtitle black-text">
           Explore guides and resources to integrate DFlow
         </p>
-        {/* <div className={styles.buttons}>
-          <Link
-            className="button button--secondary button--lg"
-            to="/docs/dflow-intro"
-          >
-            DFlow Docs landing page
-          </Link>
-        </div> */}
       </div>
     </header>
   );
