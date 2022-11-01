@@ -2,58 +2,72 @@
 sidebar_position: 3
 ---
 
-# Fetch Price Quotes
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
 
-## Overview
+# Fetch Price Quote
 
-DFlow makes the distinction by calling one the Indicative Quote and the other the Firm Quote. You fetch quotes by hitting the endpoints on a Signatory Server.
+The following provides an overview of the quote request process and will be updated with full code examples.
 
-### Indicative quote
+## Step 1: Endorse Request
 
-An _Indicative Quote_ is provided by market makers to give a continuous stream of price quotes for you to display to your users. This is a high throughput endpoint that can be called to give users an approximation of the "real" price, where DFlow defines the "real" price as the executable price.
+The first step is to have your Endorsement Server endorse your request.
 
-<!-- === "TypeScript"
+<Tabs>
+<TabItem value="ts" label="TypeScript">
 
-    ``` ts
-    TODO
-    ```
+```ts
+// TODO
+```
 
-=== "Python"
+</TabItem>
 
-    ``` python
-    TODO
-    ```
+</Tabs>
 
-=== "HTTP"
+## Step 2: Request For Price Quote
 
-    ``` http
-    TODO
-    ``` -->
+Once your request is endorsed, you can send a quote request with the following schema:
 
-### Firm quote
+```TypeScript
+{
+    sendMint: string, // Send token
+    receiveMint: string, // Receive token
+    sendQty: string, // Send token quantity
+    maxSlippageBps: number, // Max slippage percentage in bps
+    wrapNativeSOL?: boolean,
+    unwrapWrappedSOL?: boolean,
+    orderFlowSource: string, // DFlow network public key identifying the order flow source
+    endorsement: schemaEndorsement, // Order flow source endorsement of this quote
+    retailTrader?: string, // Public key of the retail trader's wallet
+}
+```
 
-A _Firm Quote_ is an executable price, meaning users will be able to have their orders filled at the Firm Quote. I.e when fetched, the receive quantity will be calculated from the Firm Quote and displayed to users, and users will be guaranteed that receive quantity assuming fill success.
+### Indicative Quote
 
-Fetching a Firm Quote, unlike an Indicative Quote, also returns a crafted DFlow transaction, which your user can then sign to complete the order transaction.
+If the above request does not contain a `retailTrader` field, you will receive an Indicative Quote, which responds with pricing information from the market, but not a DFlow order transaction. If your user has intention of filling the order, see below for Firm Quote.
 
-Note this price quote endpoint is rate-limited which means you should refrain from retrieving Firm Quotes unless necessary (when user has intent of submitting an order).
+<Tabs>
+<TabItem value="ts" label="TypeScript">
 
-<!-- What's the rate limit? -->
+```ts
+// TODO
+```
 
-<!-- === "TypeScript"
+</TabItem>
 
-    ``` ts
-    TODO
-    ```
+</Tabs>
 
-=== "Python"
+### Firm Quote
 
-    ``` python
-    TODO
-    ```
+If the above request contains a `retailTrader` field, you will receive a Firm Quote, which responds with a DFlow order transaction which can be signed and submitted by the user. Note clients should adhere to the rule of using the Indicative Quote by default for price displays and only the Firm Quote when user intends on submitting the order.
 
-=== "HTTP"
+<Tabs>
+<TabItem value="ts" label="TypeScript">
 
-    ``` http
-    TODO
-    ``` -->
+```ts
+// TODO
+```
+
+</TabItem>
+
+</Tabs>

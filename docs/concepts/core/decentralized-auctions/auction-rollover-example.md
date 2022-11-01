@@ -1,14 +1,14 @@
 ---
-sidebar_position: 1
+sidebar_position: 3
 ---
 
-# DFlow Auction Behavior
+# Auction Rollover Example
 
-## Auction lifecycle
+This section describes an auction epoch rollover example.
 
-See [Order Flow Auction](/docs/concepts/core/order-flow-auction.md) for auction structure and parameters. This section focuses on an auction epoch rollover example. The following example should illustrate the entire lifecycle and cover all auction cases.
+Consider the example of a wallet, Wallet A, who creates an auction, Auction A.
 
-### Day 0: Wallet A creates and deploys Auction A
+### Day 0: Auction Created
 
 | Auction Parameter             | Value              |
 | :---------------------------- | :----------------- |
@@ -24,7 +24,7 @@ See [Order Flow Auction](/docs/concepts/core/order-flow-auction.md) for auction 
 | Fee Payer                     | Market Maker       |
 | Backup Liquidity Provider     | Jupiter Aggregator |
 
-DFlow Protocol hardcodes a set of factors to determine the ending of each epoch's Bid Period. These are not user defined.
+DFlow hardcodes a set of factors to determine the ending of each epoch's Bid Period. These are not user defined.
 
 | Protocol Parameter | Value |
 | :----------------- | :---- |
@@ -37,13 +37,9 @@ Auction A's Genesis Epoch have the following Bid, Reveal, and Delivery Period:
 - Reveal Period: 3 days `(Genesis Epoch Duration - Genesis Epoch Bid Period)`
 - Delivery Period: the shorter of 5 days `(Genesis Epoch Delivery Period)` or when $200,000 `(Notional)` is delivered
 
-:::info Unix Time vs. Notional Time
+![Image title](../../../../static/img/Example-1.svg)
 
-Auction operators define the maximum length of the Delivery Period when setting Genesis Epoch Delivery Period and Generic Epoch Delivery Period. These times are defined in Unix time but DFlow also defines another element of time called Notional Time, which is defined as Delivered Notional over Total Notional. Delivering order flow increments the current Notional Time. The actual Delivery Period may be shorter.
-:::
-
-```mermaid
-gantt
+<!-- gantt
     dateFormat  YYYY-MM-DD-HH
     axisFormat  %Y-%m-%d-%H
     todayMarker off
@@ -53,10 +49,11 @@ gantt
     section Genesis
     Bid Period                  :active,  des1, 2022-10-13-00, 7d
     Reveal Period               :crit,  des2, after des1, 3d
-    Delivery Period (maximum)             :crit,  des3, after des2, 5d
-```
+    Delivery Period (maximum)             :crit,  des3, after des2, 5d -->
 
-### Day 8: Genesis Epoch Bid ends
+### Day 0-7: Accepting Bids
+
+### Day 8: Genesis Epoch Bid Period Ends
 
 In the 7 days, three market makers submitted bids into Auction A. During this period, none of them or DFlow can see the bid values.
 
@@ -68,8 +65,9 @@ In the 7 days, three market makers submitted bids into Auction A. During this pe
 
 The Reveal Period starts and all three of them have 3 days to reveal their bids. No new bids can be submitted and market makers are not obligated to reveal. The winning bid will be selected from the pool of _revealed_ bids.
 
-```mermaid
-gantt
+![Image title](../../../../static/img/Example-2.svg)
+
+<!-- gantt
     dateFormat  YYYY-MM-DD-HH
     axisFormat  %Y-%m-%d-%H
     todayMarker off
@@ -79,27 +77,22 @@ gantt
     section Genesis
     Bid Period                  :done,  des1, 2022-10-13-00, 7d
     Reveal Period               :active,  des2, after des1, 3d
-    Delivery Period             :crit,  des3, after des2, 5d
-```
+    Delivery Period             :crit,  des3, after des2, 5d -->
 
-### Day 11: Genesis Epoch Reveal ends
+### Day 8-10: Revealing Bids
+
+### Day 11: Genesis Epoch Reveal Period Ends
 
 All market makers have revealed. Market Maker C has the highest bid and thus, wins the right to fill $200,000 of SOL-USDC orders! This also marks the start of Epoch 1's Bid Period.
 
-:::info Recap On Generic Epoch
-
-Epoch 1...N will be considered Generic Epochs.
-
-:::
-
 Wallet A now has a maximum of 5 days to deliver $200,000 worth of SOL-USDC of [$20,$50). Let's say Wallet A delivers $140,000 in 2 days.
 
-```mermaid
-gantt
+![Image title](../../../../static/img/Example-3.svg)
+
+<!-- gantt
     dateFormat  YYYY-MM-DD-HH
     axisFormat  %Y-%m-%d-%H
     todayMarker off
-    title       Day 11
     Current Time: milestone, 2022-10-23-00, 0d
 
     section Genesis
@@ -110,10 +103,11 @@ gantt
     section Epoch 1
     Bid Period                  :active,  des4, after des2, 3d
     Reveal Period               :crit,  des5, after des4, 2d
-    Delivery Period (maximum)           :crit,  des6, after des5, 2d
-```
+    Delivery Period (maximum)           :crit,  des6, after des5, 2d -->
 
-### Day 13: Epoch 1 Bid ends
+### Day 12: Delivering Order Flow
+
+### Day 13: Epoch 1 Bid Period Ends
 
 Epoch 1 has a Bid Period end time that's dependent on which of the following happens first:
 
@@ -122,8 +116,9 @@ Epoch 1 has a Bid Period end time that's dependent on which of the following hap
 
 In this case, Wallet ABC delivered $140,000 in 2 days.
 
-```mermaid
-gantt
+![Image title](../../../../static/img/Example-4.svg)
+
+<!-- gantt
     dateFormat  YYYY-MM-DD-HH
     axisFormat  %Y-%m-%d-%H
     todayMarker off
@@ -138,17 +133,17 @@ gantt
     section Epoch 1
     Bid Period                  :active,  des4, after des2, 2d
     Reveal Period               :crit,  des5, after des4, 3d
-    Delivery Period (Maximum)            :crit,  des6, after des5, 2d
-```
+    Delivery Period (Maximum)            :crit,  des6, after des5, 2d -->
 
-### Day 14: Generic Epoch Delivery and Epoch 1 Reveal ends at the same time
+### Day 14: Generic Epoch Delivery and Epoch 1 Reveal Period ends at the same time
 
 Auction A delivers the other $60,000 the next day and Genesis Epoch has officially ended. Epoch 1 Reveal Period also ended and the next $200,000 worth of SOL-USDC starts being delivered to the winner of Epoch 1.
 
 Note Epoch 1 has a different maximum Delivery Period because auction operator defines Generic Epoch Delivery Period.
 
-```mermaid
-gantt
+![Image title](../../../../static/img/Example-5.svg)
+
+<!-- gantt
     dateFormat  YYYY-MM-DD-HH
     axisFormat  %Y-%m-%d-%H
     todayMarker off
@@ -168,10 +163,7 @@ gantt
     section Epoch 2
     Bid Period                  :active,  des7, after des5, 1d
     Reveal Period               :crit,  des8, after des7, 1d
-    Delivery Period (Maximum)            :crit,  des9, after des8, 2d
-```
-
-### Day N: Auction A will roll over indefinitely until it's cancelled.
+    Delivery Period (Maximum)            :crit,  des9, after des8, 2d -->
 
 <!-- ## Rollover Takeaway
 

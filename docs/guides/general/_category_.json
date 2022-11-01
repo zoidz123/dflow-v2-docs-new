@@ -3,6 +3,7 @@
     "position": 1,
     "link": {
       "type": "generated-index",
+      "description": "This section applies to both order flow sources and market makers."
     }
   }
   

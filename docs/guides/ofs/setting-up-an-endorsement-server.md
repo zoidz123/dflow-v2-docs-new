@@ -2,72 +2,56 @@
 sidebar_position: 1
 ---
 
-# Set Up A DFlow Endorsement Server
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
 
-## Overview
+# Set Up DFlow Endorsement Server
 
-Having an endorsement server up and running is the first step to onboarding with DFlow. The purpose of the endorsement server is to guarantee order flow sent by you is actually submitted by your users. This both attaches an intent on order flow, which helps with price discovery, and reduces network spam from malicious sources.
+This guide walks over the steps to set up the Endorsement Server, which is required for fetching prices and submitting orders.
 
-The following actions on DFlow requires endorsement from the endorsement server:
+**It is recommended you complete this process before creating your first auction.**
 
-- Fetch price quotes
-- Submit order transactions
+## Step 1: Generate Key
 
-### Define endorsement
+To complete the Endorsement Server setup, you will need to generate an endorsement key, which can be any Ed25519 keypair. You can either generate one on your own or use the DFlow interface.
 
-An endorsement is done by attaching an Ed25519 public key and signature to the data field of the request or transaction. When you endorse a request or transaction, you are marking that request or transaction as one that came from one of your users.
+Remember, you will need to enter the public key when you create your first auction and this keypair will be required for sending orders to your auctions in the future.
 
-### Generate endorsement key
+## Step 2: Configure Server
 
-To complete the endorsement server setup, you will need to generate an endorsement key, which can be any Ed25519 keypair. When you create your first auction, DFlow will prompt you to enter an existing public key (also an option to help you generate one). If your first auction is created successfully, DFlow will automatically generate an on-chain account for you which includes your endorsement key.
+<Tabs>
+<TabItem value="ts" label="TypeScript">
 
-:::info Save Your Key
+```ts
+// TODO
+```
 
-Save your endorsement private key and ensure the endorsement public key you generated is also used to set up the endorsement server later. DFlow will check if you signed with the correct key.
-:::
+</TabItem>
 
-### Deploy Endorsement Server
+</Tabs>
 
-An endorsement server will be delivered to you as a Docker image, which you can deploy on any server. The endorsement server gives you additional flexibility when it comes to preventing malicious actors from using your endorsement key to spam the network.
+## Step 3: Deploy Server
 
-<!-- === "TypeScript"
+<Tabs>
+<TabItem value="ts" label="TypeScript">
 
-    ``` ts
-    TODO
-    ```
+```ts
+// TODO
+```
 
-=== "Python"
+</TabItem>
 
-    ``` python
-    TODO
-    ```
+</Tabs>
 
-=== "Rust"
+## Step 4: Test Your System
 
-    ``` rust
-    TODO
-    ``` -->
+<Tabs>
+<TabItem value="ts" label="TypeScript">
 
-After your endorsement server is setup, you can start routing orders to your DFlow auctions!
+```ts
+// TODO
+```
 
-### Endorse user requests and transactions
+</TabItem>
 
-DFlow requires you to endorse price quote requests and user order transactions. Request and transactions without a proper endorsement will fail. An endorsement also comes with a preset timestamp, limiting actions to a certain period of time after endorsement.
-
-<!-- === "TypeScript"
-
-    ``` ts
-    TODO
-    ```
-
-=== "Python"
-
-    ``` python
-    TODO
-    ```
-
-=== "Rust"
-
-    ``` rust
-    TODO
-    ``` -->
+</Tabs>

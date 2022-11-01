@@ -1,8 +1,6 @@
-# Decentralized NBBO
+# Consolidated Best Price Index
 
-## Overview
-
-The decentralized NBBO (DNBBO) is an analogue to the NBBO created by the SEC to ensure brokerage firms provide customers with the best publicly available prices.
+The Consollidated Best Price Index (CBPI) is an analogue to the NBBO created by the SEC to ensure brokerage firms provide customers with the best publicly available prices.
 
 :::note National Best Bid and Offer
 
@@ -10,4 +8,4 @@ In US equities, stocks are traded on 10+ different registered exchanges, primari
 
 :::
 
-DFlow programmatically requires market makers to fill orders at prices at or better than the DNBBO. Orders filled at prices within the the DNBBO quote are called price improvements.
+DFlow programmatically requires market makers to fill orders at prices at or better than the CBPI. Orders filled at prices within the the CBPI quote are called price improvements.

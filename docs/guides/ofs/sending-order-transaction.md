@@ -2,30 +2,39 @@
 sidebar_position: 4
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
 # Send Order Transaction
 
-## Overview
+This section goes over the process of sending a new order to DFlow.
 
-When a user shows intent of submitting an order, you can fetch a Firm Quote by sending a request to the signatory server. The signatory server will then check for endorsement, craft a DFlow transaction, and return the transaction. If the user proceeds with the order, the user will sign the transaction which gets forwarded to the market maker, who will approve and send the settlement transaction to the appropriate destination chain.
+## Step 1: Endorse Transaction
 
-On low gas cost chains, you have the option to delegate the market maker as the fee payer for the settlement transaction.
+The first step is to have your Endorsement Server endorse your transaction.
 
-<!-- ## Integration -->
+<Tabs>
+<TabItem value="ts" label="TypeScript">
 
-<!-- === "TypeScript"
+```ts
+// TODO
+```
 
-    ``` ts
-    TODO
-    ```
+</TabItem>
 
-=== "Python"
+</Tabs>
 
-    ``` python
-    TODO
-    ```
+## Step 2: Send Order Transaction
 
-=== "Rust"
+Once your request is endorsed, you can send a quote request with the following schema:
 
-    ``` rust
-    TODO
-    ``` -->
+<Tabs>
+<TabItem value="ts" label="TypeScript">
+
+```ts
+// TODO
+```
+
+</TabItem>
+
+</Tabs>

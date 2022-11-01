@@ -4,11 +4,9 @@ sidebar_position: 1
 
 # DFlow Intro
 
-## Overview
-
 DFlow is a decentralized order flow marketplace, powered by DFlow Protocol's open and fair payment-for-order-flow (PFOF) model.
 
-<!-- ![Image title](/diagrams/DFlow-Overview.svg) -->
+![Image title](../static/img/DFlow%20Overview.svg)
 
 ### DFlow
 
@@ -24,19 +22,21 @@ The Protocol is made up of three main components.
 
 #### DFlow Node
 
-The [DFlow node](/docs/architecture/dflow-node.md) or validator is the on-chain entity that is responsible for validating transactions on the DFlow appchain. The DFlow appchain is intended to be run by a decentralized network of nodes. Nodes will also store auction related data, including information about auction status, order fill quality, payments made by market makers etc.
+The [DFlow Node](/docs/architecture/dflow-node.md) or validator is the on-chain entity that is responsible for validating transactions on the DFlow appchain. The DFlow appchain is intended to be run by a decentralized network of nodes. Nodes will also store auction related data, including information about auction status, order fill quality, payments made by market makers etc.
 
 #### Signatory Server
 
-Each DFlow node will run a [signatory server](/docs/architecture/signatory-server.md), an off-chain sidecar that handles periphery applications including processing quote requests, crafting blockchain transactions, monitoring bridge transactions etc.
+Each DFlow node will run a [Signatory Server](/docs/architecture/signatory-server.md), an off-chain sidecar that handles periphery applications including processing quote requests, crafting blockchain transactions, monitoring bridge transactions etc.
 
 #### Endorsement Server
 
-DFlow Protocol's open and fair PFOF model associates user intent with order flow, which improves order flow price discovery. A crypto brokerage routing orders to DFlow incorporates intent into order flow by running an [endorsement server](/docs/architecture/endorsement-server.md). Order flow is best priced not only according to a set of user-defined parameters but also external factors (e.g. who is sending the order, why is the order being placed).
+DFlow Protocol's open and fair PFOF model associates user intent with order flow, which improves order flow price discovery. A crypto brokerage routing orders to DFlow incorporates intent into order flow by running an [Endorsement Server](/docs/architecture/endorsement-server.md). Order flow is best priced not only according to a set of user-defined parameters but also external factors (e.g. who is sending the order, why is the order being placed).
 
 ## Why DFlow?
 
-Firstly, _order flow_ should be defined. In crypto, order flow has been used to mean any transaction that changes the blockchain state. Here, order flow strictly means buy and sell orders at the _application layer_, as opposed to transactions closer to the _validator layer_.
+:::note What is Order Flow
+In crypto, order flow has been used to mean any transaction that changes the blockchain state. Here, order flow strictly means trader buy and sell orders as opposed to transactions like bundles, blocks etc.
+:::
 
 DFlow is inspired and built from the following observations:
 
@@ -44,14 +44,13 @@ DFlow is inspired and built from the following observations:
 - **Blockchain technology redistributes power from institutions back to individuals by reducing trust assumptions in the entire finance supply chain.** Algorithmically enforcing order execution on-chain guarantees best execution and lets the public easily verify the legitimacy of any transaction.
 - **There is an intense market need for monetization of order flow safely, freely, and with maximum competition.** Enabling the _proper_ monetization of order flow allows the crypto application layer to develop novel features for the end users.
 
-### Built for retail
+### Built For Consumers
 
-The benefit of an active and market-driven order flow marketplace does not only benefit the immediate two parties involved (e.g. crypto brokerages and market makers). The most important beneficiary is the group of individual traders who trade on the venues that are routing order flow to DFlow.
+Individual traders who trade on venues that are routing orders to DFlow can expect the following:
 
-While retail is not the immediate user, they directly benefit from crypto brokerages selling order flow on DFlow. Brokerages can pass on the following:
-
-- **Zero fee swapping.** No hidden fees. Neither DFlow nor participating market makers take a trading or "convenience" fee.
-- **Guaranteed best execution.** The DFlow PFOF model uses a decentralized price oracle to ensure market makers fill at the best available market price.
-- **Real cost savings.** Market makers often fill at better than market prices, resulting in price and size improvements.
+- **Zero Fee Swapping.** No hidden fees for all trades. Neither DFlow nor participating market makers take a trading or "convenience" fee.
+- **Zero Slippage.** DFlow's RFQ system prevents negative price slippage.
+- **Guaranteed Best Execution.** The DFlow PFOF model uses a decentralized price index to algorithmically guarantee market makers fill at minimum the best available price.
+- **MEV Protection.** All consumer trades are protected from frontrunning.
 
 <!-- ![Image title](/diagrams/DFlow-Protocol.svg) -->
