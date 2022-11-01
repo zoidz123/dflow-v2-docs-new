@@ -8,7 +8,7 @@ const darkCodeTheme = require("prism-react-renderer/themes/dracula");
 const config = {
   title: "Welcome to the Docs",
   tagline: "",
-  url: "https://your-docusaurus-test-site.com",
+  url: "https://dflow.net",
   baseUrl: "/",
   onBrokenLinks: "throw",
   onBrokenMarkdownLinks: "warn",

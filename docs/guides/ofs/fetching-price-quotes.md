@@ -11,13 +11,21 @@ The following provides an overview of the quote request process and will be upda
 
 ## Step 1: Endorse Request
 
+**This only applies if you are requesting for a Firm Quote.**
+
 The first step is to have your Endorsement Server endorse your request.
+
+```json
+// TODO
+// This is the schema for requesting an endorsement for your request.
+```
 
 <Tabs>
 <TabItem value="ts" label="TypeScript">
 
 ```ts
 // TODO
+// This is the way to send an endorsement request.
 ```
 
 </TabItem>
@@ -28,29 +36,23 @@ The first step is to have your Endorsement Server endorse your request.
 
 Once your request is endorsed, you can send a quote request with the following schema:
 
-```TypeScript
-{
-    sendMint: string, // Send token
-    receiveMint: string, // Receive token
-    sendQty: string, // Send token quantity
-    maxSlippageBps: number, // Max slippage percentage in bps
-    wrapNativeSOL?: boolean,
-    unwrapWrappedSOL?: boolean,
-    orderFlowSource: string, // DFlow network public key identifying the order flow source
-    endorsement: schemaEndorsement, // Order flow source endorsement of this quote
-    retailTrader?: string, // Public key of the retail trader's wallet
-}
+```json
+// TODO
+// This is the schema for a quote request
 ```
 
 ### Indicative Quote
 
-If the above request does not contain a `retailTrader` field, you will receive an Indicative Quote, which responds with pricing information from the market, but not a DFlow order transaction. If your user has intention of filling the order, see below for Firm Quote.
+An Indicative Quote responds with pricing information from the market, but not a DFlow order transaction. If your user has intention of filling the order, see below for Firm Quote.
 
 <Tabs>
 <TabItem value="ts" label="TypeScript">
 
 ```ts
 // TODO
+// This is the way to request for an Indicative Quote.
+
+// This is the response from your request.
 ```
 
 </TabItem>
@@ -59,13 +61,16 @@ If the above request does not contain a `retailTrader` field, you will receive a
 
 ### Firm Quote
 
-If the above request contains a `retailTrader` field, you will receive a Firm Quote, which responds with a DFlow order transaction which can be signed and submitted by the user. Note clients should adhere to the rule of using the Indicative Quote by default for price displays and only the Firm Quote when user intends on submitting the order.
+A Firm Quote responds with a DFlow order transaction which can be signed and submitted by the user. Note clients should adhere to the rule of using the Indicative Quote by default for price displays and only the Firm Quote when user intends on submitting the order. This quote request will be rate limited.
 
 <Tabs>
 <TabItem value="ts" label="TypeScript">
 
 ```ts
 // TODO
+// This is the way to request for an Firm Quote.
+
+// This is the response from a Firm Quote.
 ```
 
 </TabItem>

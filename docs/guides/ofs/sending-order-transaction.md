@@ -18,6 +18,7 @@ The first step is to have your Endorsement Server endorse your transaction.
 
 ```ts
 // TODO
+// This is the schema for requesting an endorsement from the Endorsement Server.
 ```
 
 </TabItem>
@@ -28,11 +29,17 @@ The first step is to have your Endorsement Server endorse your transaction.
 
 Once your request is endorsed, you can send a quote request with the following schema:
 
+```json
+// TODO
+// This is the schema for sending an order transaction to the Signatory Server.
+```
+
 <Tabs>
 <TabItem value="ts" label="TypeScript">
 
 ```ts
 // TODO
+// This is the way to send an order.
 ```
 
 </TabItem>

@@ -6,6 +6,7 @@ import Layout from "@theme/Layout";
 import HomepageLinks from "../components/HomepageLinks";
 import CardLinks from "../components/CardLinks";
 import styles from "./index.module.css";
+import SearchBarWrapper from "../theme/SearchBar";
 
 function HomepageHeader() {
   const { siteConfig } = useDocusaurusContext();
